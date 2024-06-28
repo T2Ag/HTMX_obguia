@@ -1,4 +1,4 @@
-@include('templates._products-list', ['products' => $products]);
+@include('templates._products-list', ['products' => $products])
 
 @if ($errors->has('name'))
     <div id="name_error" hx-swap-oob="true">

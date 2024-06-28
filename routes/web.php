@@ -19,8 +19,8 @@ Route::get('/', function () { return view('pages.home'); });
 Route::get('/about', function () { return view('pages.about'); });
 Route::get('/contact', function () { return view('pages.contact'); });
 Route::get('/products', function () { return view('pages.products'); });
+Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::get('/product/{product}/show', [ProductController::class, 'show'])->name('product.show');
 
-Route::get('/api/products', [ProductController::class, 'index']);
-Route::post('/api/products', [ProductController::class, 'store']);
 
 

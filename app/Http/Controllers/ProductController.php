@@ -14,21 +14,10 @@ class ProductController extends Controller
         if($request->filter) {
             $products->where('name', 'like', "%$request->filter%");
         }
-        
-        $html = "";
 
-        foreach($products->get() as $prod) {
-            $html .= "
-                <div class='p-4 rounded overflow-hidden shadow-md bg-white mt-3'>
-                    <img src='$prod->img' alt='$prod->name' class='w-full h-48 object-cover rounded-t'>
-                    <h3 class='text-2xl'>$prod->name</h3>
-                    <p class='text-lg'>Price: $prod->price</p>
-                </div>
-            ";
-        }
-
-        return $html;
+        return view('templates._products-list',['products'=>$products]);
     }
+
 
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
@@ -47,5 +36,41 @@ class ProductController extends Controller
         Product::create($request->all());
 
         return view('templates._products-list',['products'=>$products]);
+    }
+
+    
+    public function edit(Product $product){
+
+        $product = Product::find($product->id);
+
+        return view('product.edit', compact('product'));
+
+    }
+
+    public function show(Product $product){
+
+        $product = Product::find($product->id);
+
+        return view('product.show', compact('product'));
+
+    }
+
+    public function update(Request $request, Product $product){
+        $fields = $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'img' => 'required'
+        ]);
+    
+        $product->update($fields);
+
+        return view('pages.products');
+    }
+
+    public function destroy(Product $product) {
+        $product = Product::find($product->id);
+        $product->delete();
+
+        return view('templates._products-list-for-create', ['products'=>$product]);
     }
 }
