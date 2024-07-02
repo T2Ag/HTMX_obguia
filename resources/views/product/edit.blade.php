@@ -1,14 +1,11 @@
-@extends('templates.base')
-@section('content')
+
     <div class="mt-4 w-full flex justify-center " id="EditPage">
         <div class="w-[100vh] bg-white rounded shadow-md p-3 mt-10">
             <h1 class="text-3xl ">Edit</h1>
             <span class="italic">Let's edit your product</span>
             <form class="mt-6" hx-put="/api/products/{{$product->id}}"
-                hx-trigger="submit"
-                hx-target="body"
+                hx-target="#products_list"
                 hx-swap="innerHTML"
-                
                 method="POST">
                 @csrf
                
@@ -30,10 +27,9 @@
                     <button class="bg-blue-600 text-white p-2  rounded hover:bg-blue-500 transition ease-linear duration-150s" type="submit">Edit Product</button>
                    </div>
                     <div>
-                        <a href="/products" class="bg-green-600 rounded text-white px-3 py-2.5">Back</a>
+                        <a hx-get="/api/products" href="#" class="bg-green-600 rounded text-white px-3 py-2.5">Back</a>
                     </div>
                 </footer>
             </form>
         </div>
     </div>
-@endsection

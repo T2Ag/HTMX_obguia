@@ -43,7 +43,7 @@ class ProductController extends Controller
 
         $product = Product::find($product->id);
 
-        return view('product.edit', compact('product'));
+        return view('product.edit', ['product'=>$product]);
 
     }
 
@@ -51,7 +51,7 @@ class ProductController extends Controller
 
         $product = Product::find($product->id);
 
-        return view('product.show', compact('product'));
+        return view('product.show', ['product'=>$product]);
 
     }
 
@@ -64,13 +64,17 @@ class ProductController extends Controller
     
         $product->update($fields);
 
-        return view('pages.products');
+        $products = Product::orderBy('name');
+
+        return view('templates._products-list', ['products'=>$products]);
     }
 
     public function destroy(Product $product) {
         $product = Product::find($product->id);
         $product->delete();
 
-        return view('templates._products-list-for-create', ['products'=>$product]);
+        $products = Product::orderBy('name');
+
+        return view('templates._products-list', ['products'=>$products]);
     }
 }

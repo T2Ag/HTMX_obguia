@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-    <div id="products_list" class="flex flex-wrap gap-3 justify-between mt-3" hx-get="/api/products" hx-trigger="load delay:500ms" hx-swap="innerHTML">
+    <div id="products_list" class="flex flex-wrap gap-3 justify-between mt-3" hx-get="/api/products" hx-trigger="load" hx-swap="innerHTML">
 
     </div>
 
