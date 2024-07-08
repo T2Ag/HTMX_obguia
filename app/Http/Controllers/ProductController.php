@@ -31,11 +31,10 @@ class ProductController extends Controller
             return view('templates._error', ['errors' => $validator->errors(), 'products' => $products]);
 
         };
-        $products = Product::orderBy('name');
 
-        Product::create($request->all());
+        $product = Product::create($request->all());
 
-        return view('templates._products-list',['products'=>$products]);
+        return view('templates._single-product',['prod'=>$product, 'newProduct' => true]);
     }
 
     

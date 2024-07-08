@@ -24,9 +24,9 @@
                             hx-post="/api/products"
                             hx-trigger="submit"
                             hx-target="#products_list"
-                            hx-swap="innerHTML"
+                            hx-swap="afterbegin swap:.5s"
                             hx-on::after-request="this.reset()"
-
+                            
                         >
                         @csrf
                             <div class="modal-body">
@@ -67,14 +67,14 @@
                     </div>
                 </div>
             </div>
-            <div>
+            {{-- <div>
                 <form hx-get="/api/products"
                         hx-trigger="submit"
                         hx-target="#products_list"
                         hx-reset="true">
                     <input type="text" name="filter" class="p-2 border border-gray-300 rounded mt-4">
                 </form>
-            </div>
+            </div> --}}
         </div>
     </div>
     <div id="products_list" class="flex flex-wrap gap-3 justify-between mt-3" hx-get="/api/products" hx-trigger="load" hx-swap="innerHTML">
