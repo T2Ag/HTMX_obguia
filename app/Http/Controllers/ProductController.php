@@ -69,11 +69,9 @@ class ProductController extends Controller
     }
 
     public function destroy(Product $product) {
-        $product = Product::find($product->id);
+        
         $product->delete();
 
-        $products = Product::orderBy('name');
-
-        return view('templates._products-list', ['products'=>$products]);
+        return "";
     }
 }
